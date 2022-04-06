@@ -27,6 +27,7 @@
                 <option value="100" <?= $limit == 100 ? "selected" : "" ?>>100</option>
             </select>
         </div>
+        <?php Utilities::displayQueryParametersHiddenInputs(['page', 'direction', 'field']) ?>
         <div class="col-auto">
             <button type="submit" class="btn btn-primary">Voir</button>
         </div>
