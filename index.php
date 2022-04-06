@@ -21,6 +21,7 @@ try {
     $database = new Database();
     $offset = (Utilities::getPageNumber() - 1) * $limit;
     $rows = $database->getData($offset, $limit, $direction, (int)$field);
+    $total = $database->countAllData()['total'] ?? 0;
 
     // display view
     include 'view.php';

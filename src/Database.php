@@ -65,4 +65,12 @@ class Database
         JOIN film_category as fc ON fc.film_id =f.film_id
         JOIN category AS c ON fc.category_id = c.category_id";
     }
+
+    public function countAllData(): bool|array
+    {
+        $query = "SELECT count(*) as total FROM film";
+        $req = $this->db->prepare($query);
+        $req->execute();
+        return $req->fetch(PDO::FETCH_ASSOC);
+    }
 }

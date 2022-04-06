@@ -27,7 +27,7 @@
                 <option value="100" <?= $limit == 100 ? "selected" : "" ?>>100</option>
             </select>
         </div>
-        <?php Utilities::displayQueryParametersHiddenInputs(['page', 'direction', 'field']) ?>
+        <?php Utilities::displayQueryParametersHiddenInputs(['direction', 'field']) ?>
         <div class="col-auto">
             <button type="submit" class="btn btn-primary">Voir</button>
         </div>
@@ -73,7 +73,7 @@
                         <td><?= $row['rental_rate'] ?></td>
                         <td><?= $row['rating'] ?></td>
                         <td><?= $row['category'] ?></td>
-                        <td><?= $row['rented_count'] ?></td>
+                        <td><?= $row['rented_count'] ?? 0 ?></td>
                     </tr>
                     <?php
                 }
@@ -89,29 +89,19 @@
             </table>
         </div>
     </div>
+    <?php if (count($rows) > 0) :?>
+        <div class="row">
+            <div class="col-md-8 d-flex align-items-center">
+                <p style="margin-bottom: 0">Affichage de l'élement <?= $offset + 1 ?> à <?= $offset  + count($rows)?> sur <?= $total ?>.</p>
+            </div>
+            <div class="col-md-4 d-flex justify-content-end">
+                <?php include "pagination.php"; ?>
+            </div>
+        </div>
+    <?php endif; ?>
     <div class="row">
-        <div class="col-md-8">
-            <?php
-            if (count($rows) > 0) {
-                ?>
-                <p>Affichage de l'élement <?= $offset + 1 ?> à <?= $offset  + count($rows)?>.</p>
-                <?php
-            } ?>
-        </div>
-        <div class="col-md-4 d-flex justify-content-end">
-            <?php if(Utilities::getPageNumber() > 1) {
-                ?>
-                <a href="?page=<?= Utilities::getPageNumber() - 1 ?><?= isset($_GET['direction']) ? '&direction='.$_GET['direction'] : '' ?><?= isset($_GET['field']) ? '&field='.$_GET['field'] : '' ?><?= isset($_GET['limit']) ? '&limit='.$_GET['limit'] : '' ?>" class="btn btn-primary" style="margin-right: 10px">Précedent</a>
-                <?php
-            }
-            if (count($rows) > 0) {
-                ?>
-                <a href="?page=<?= Utilities::getPageNumber() + 1 ?><?= isset($_GET['direction']) ? '&direction='.$_GET['direction'] : '' ?><?= isset($_GET['field']) ? '&field='.$_GET['field'] : '' ?><?= isset($_GET['limit']) ? '&limit='.$_GET['limit'] : '' ?>" class="btn btn-primary">Suivant</a>
-                <?php
-            } ?>
-        </div>
         <div class="col mt-5">
-            <p>PIERRON Marc @ Mastère CTO & Tech Lead P2022</p>
+            <p><a href="mailto:m_pierron1@hetic.eu">PIERRON Marc</a> @ Mastère CTO & Tech Lead P2022</p>
         </div>
     </div>
 </div>
