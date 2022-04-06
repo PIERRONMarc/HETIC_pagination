@@ -24,7 +24,7 @@ try {
     $total = $database->countAllData()['total'] ?? 0;
 
     // display view
-    include 'view.php';
+    include 'template/view.php';
 
 } catch (\Exception $exception) {
     echo $exception->getMessage();
