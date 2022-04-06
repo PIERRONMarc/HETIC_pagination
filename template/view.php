@@ -42,26 +42,10 @@
                         <a href="?direction=asc&field=1&page=1<?= isset($_GET['limit']) ? '&limit='.$_GET['limit'] : '' ?>">asc</a>
                         <a href="?direction=desc&field=1&page=1<?= isset($_GET['limit']) ? '&limit='.$_GET['limit'] : '' ?>">desc</a>
                     </th>
-                    <th>
-                        Prix location
-                        <a href="?direction=asc&field=2&page=1<?= isset($_GET['limit']) ? '&limit='.$_GET['limit'] : '' ?>">asc</a>
-                        <a href="?direction=desc&field=2&page=1<?= isset($_GET['limit']) ? '&limit='.$_GET['limit'] : '' ?>">desc</a>
-                    </th>
-                    <th>
-                        Classification
-                        <a href="?direction=asc&field=3&page=1<?= isset($_GET['limit']) ? '&limit='.$_GET['limit'] : '' ?>">asc</a>
-                        <a href="?direction=desc&field=3&page=1<?= isset($_GET['limit']) ? '&limit='.$_GET['limit'] : '' ?>">desc</a>
-                    </th>
-                    <th>
-                        Genre
-                        <a href="?direction=asc&field=4&page=1<?= isset($_GET['limit']) ? '&limit='.$_GET['limit'] : '' ?>">asc</a>
-                        <a href="?direction=desc&field=4&page=1<?= isset($_GET['limit']) ? '&limit='.$_GET['limit'] : '' ?>">desc</a>
-                    </th>
-                    <th>
-                        Nombre de fois loué
-                        <a href="?direction=asc&field=5&page=1<?= isset($_GET['limit']) ? '&limit='.$_GET['limit'] : '' ?>">asc</a>
-                        <a href="?direction=desc&field=5&page=1<?= isset($_GET['limit']) ? '&limit='.$_GET['limit'] : '' ?>">desc</a>
-                    </th>
+                    <th>Prix location</th>
+                    <th>Classification</th>
+                    <th>Genre</th>
+                    <th>Nombre de fois loué</th>
                 </tr>
                 </thead>
                 <tbody>
