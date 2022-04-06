@@ -54,12 +54,15 @@ class Database
 
     private function getQuery(): string
     {
-        return "select title, rental_rate, rating, name as category, count(r.rental_id) as rented_count
-            from film f, film_category fc, category c, inventory i, rental r
-            where fc.film_id = f.film_id
-            and fc.category_id = c.category_id
-            and i.film_id = f.film_id
-            and i.inventory_id = r.inventory_id
-            group by title";
+        return "SELECT f.title ,f.rental_rate,f.rating,
+        c.name as category,
+        (SELECT COUNT(inventory.film_id)
+        FROM inventory 
+        JOIN rental ON rental.inventory_id = inventory.inventory_id
+        WHERE inventory.film_id = f.film_id GROUP BY inventory.film_id
+        ) as rented_count
+        FROM film as f 
+        JOIN film_category as fc ON fc.film_id =f.film_id
+        JOIN category AS c ON fc.category_id = c.category_id";
     }
 }
