@@ -7,6 +7,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/fontawesome/css/all.min.css">
 </head>
 <body>
 <div class="container">
@@ -37,15 +38,37 @@
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
+                    <?php
+                        switch ($direction) {
+                            case 'desc':
+                                $otherDirection = 'asc';
+                                $directionIcon = 'fa-sort-up';
+                                break;
+                            case 'asc':
+                                $otherDirection = 'desc';
+                                $directionIcon = 'fa-sort-down';
+                                break;
+                            default:
+                                $otherDirection = 'asc';
+                                $directionIcon = 'fa-sort';
+                                break;
+                        }
+                    ?>
                     <th>
-                        Film
-                        <a href="?direction=asc&field=1&page=1<?= isset($_GET['limit']) ? '&limit='.$_GET['limit'] : '' ?>">asc</a>
-                        <a href="?direction=desc&field=1&page=1<?= isset($_GET['limit']) ? '&limit='.$_GET['limit'] : '' ?>">desc</a>
+                        <a href="?direction=<?= $otherDirection ?>&field=1&page=1&<?= Request::generateQueryParameters(['limit'])?>">Film</a>
+                        <i class="fa-solid <?= $field == 1 ? $directionIcon : 'fa-sort' ?>"></i>
                     </th>
                     <th>Prix location</th>
                     <th>Classification</th>
-                    <th>Genre</th>
-                    <th>Nombre de fois loué</th>
+                    <th>
+                        <a href="?direction=<?= $otherDirection ?>&field=4&page=1&<?= Request::generateQueryParameters(['limit'])?>">Genre</a>
+                        <i class="fa-solid <?= $field == 4 ? $directionIcon : 'fa-sort' ?>"></i>
+                    </th>
+                    <th>
+
+                        <a href="?direction=<?= $otherDirection ?>&field=5&page=1&<?= Request::generateQueryParameters(['limit'])?>">Nombre de fois loué</a>
+                        <i class="fa-solid <?= $field == 5 ? $directionIcon : 'fa-sort' ?>"></i>
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -85,7 +108,7 @@
     <?php endif; ?>
     <div class="row">
         <div class="col mt-5">
-            <p><a href="mailto:m_pierron1@hetic.eu">PIERRON Marc</a> @ Mastère CTO & Tech Lead P2022</p>
+            <p><a href="mailto:m_pierron1@hetic.eu">PIERRON Marc</a> @ HETIC MT5P2022</p>
         </div>
     </div>
 </div>
