@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  web:
+    build: ./docker/web
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_NAME=sakila
+      - DB_USER=root
+      - DB_PASSWORD=root
+  db:
+    build: ./docker/db
+    command: [ "--default-authentication-plugin=mysql_native_password" ]
+    volumes:
+      - "./.data/db:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+  phpmyadmin:
+    container_name: labboite_phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - db
+    ports:
+      - "8080:80"
